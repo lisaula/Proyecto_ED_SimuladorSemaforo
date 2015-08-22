@@ -23,6 +23,8 @@ public:
         return pixmap;
     }
     void setPixmap(QPixmap p);
+    void flip(bool horizontal, bool vertical);
+    void rotate(int r);
 
 protected:
     QRectF boundingRect() const;

@@ -8,6 +8,7 @@
 #include"semaforoh.h"
 #include "autos.h"
 #include "colacarros.h"
+#include "calle.h"
 using namespace std;
 namespace Ui {
 class Widget;

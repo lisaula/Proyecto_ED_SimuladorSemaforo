@@ -74,6 +74,31 @@ bool ColaCarros::desplazar(Autos *c)
     return false;
 }
 
+float ColaCarros::sumaHeight()
+{
+    float suma=0;
+    NodoCarro*  temp = root;
+    while(temp){
+        suma+=temp->carro->size().height();
+        cout<<"Sumas "<<suma<<endl;
+        temp=temp->sig;
+    }
+    return suma;
+}
+
+float ColaCarros::sumaWidth()
+{
+    float suma=0;
+    NodoCarro*  temp = root;
+    while(temp){
+        suma+=temp->carro->size().width();
+        cout<<"Sumas "<<suma<<endl;
+        temp=temp->sig;
+    }
+    return suma;
+
+}
+
 
 
 

@@ -28,10 +28,9 @@ Widget::Widget(QWidget *parent) :
 
 void Widget::insertarActores(){
     Estrella* e = new Estrella(":green.png");
-    e->setPosition(QPointF(0.0,0.0));
-    e->setVelocity(QPointF(1.0,1.0));
+    e->setPosition(QPointF(500.0,100.0));
+    e->setVelocity(QPointF(0,0));
     e->setSize(QSizeF(50.0,50.0));
-    e->Invertir();
     semaH= new SemaforoH(":Rojo.png");
     semaH->setPosition(QPointF(122.0,100.0));
     semaH->setVelocity(QPointF(0.0,0.0));
@@ -48,17 +47,18 @@ void Widget::insertarActores(){
     Autos * cam = new Autos(":camion.png");
     cola->push(cam);
     cola->push(tur);
-    cout<<cola->first()->tipo<<endl;
-    cout<<cola->root->sig->carro->tipo<<endl;
 
     mscene->addActor(e);
     mscene->addActor(semaH);
-    mscene->addActor(cola->first());
-    mscene->addActor(cola->root->sig->carro);
-    cola->pop();
-    cout<<cola->first()->tipo<<endl;
-
-
+//    mscene->addActor(cola->first());
+//    mscene->addActor(cola->root->sig->carro);
+//    cola->pop();
+    Calle * calle =  new Calle("Creenshaw Ave");
+    calle->agregarCarro(mscene);
+    calle->agregarCarro(mscene);
+    calle->agregarCarro(mscene);
+    cout<<"Size "<<calle->cola1->size()<<endl;
+    cout<<"suma h"<<calle->cola1->sumaWidth()<<endl;
 }
 
 Widget::~Widget()

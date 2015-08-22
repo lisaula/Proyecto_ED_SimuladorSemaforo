@@ -11,5 +11,10 @@
         <file>bus.png</file>
         <file>camion.png</file>
         <file>Policia.png</file>
+        <file>ambulanciaV.png</file>
+        <file>busV.png</file>
+        <file>camionV.png</file>
+        <file>PoliciaV.png</file>
+        <file>turismoV.png</file>
     </qresource>
 </RCC>

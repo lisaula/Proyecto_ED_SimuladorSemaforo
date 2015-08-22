@@ -13,6 +13,8 @@ public:
     void anular();
     int size();
     bool desplazar(Autos *c);
+    float sumaHeight();
+    float sumaWidth();
     ColaCarros();
 };
 

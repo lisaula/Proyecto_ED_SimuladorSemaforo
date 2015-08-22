@@ -5,6 +5,7 @@
 #define WIDTH 1060.0
 #define HEIGHT 660.0
 #define SEC_EN_PASAR 4.0
+#define VEL_PROM 1.5
 
 #define H_POSX_DI 788.2
 #define H_POSX_ID 230.2

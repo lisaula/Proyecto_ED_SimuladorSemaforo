@@ -6,8 +6,6 @@ class Estrella :public MyItem
 {
 public:
     void logica();
-
-    void Invertir();
     Estrella(const QString &Filename,QGraphicsItem *parent=nullptr);
 };
 

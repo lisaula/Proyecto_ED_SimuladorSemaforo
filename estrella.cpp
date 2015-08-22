@@ -12,7 +12,7 @@ void Estrella::logica(){
         float vy=this->velocity().y();
 
         x+= vx;
-        y=0 ;
+
 
         if(x<0||x+this->size().width()>1054){
             vx=-vx;
@@ -27,12 +27,3 @@ void Estrella::logica(){
         this->setVelocity(QPointF(vx,vy));
 }
 
-void Estrella::Invertir(){
-    QPixmap p =getPixmap();
-    QImage img =p.toImage();
-    QTransform mt;
-    mt.rotate(180);
-    img=img.transformed(mt);
-    p.fromImage(img);
-    this->setPixmap(p);
-}

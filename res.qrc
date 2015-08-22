@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Estrella.png</file>
+        <file>Background.png</file>
+        <file>green.png</file>
+        <file>Naranja.png</file>
+        <file>Rojo.png</file>
+        <file>verde.png</file>
+        <file>turismo.png</file>
+        <file>ambulancia.png</file>
+        <file>bus.png</file>
+        <file>camion.png</file>
+        <file>Policia.png</file>
+    </qresource>
+</RCC>

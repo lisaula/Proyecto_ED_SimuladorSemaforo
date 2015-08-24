@@ -28,6 +28,7 @@ public:
     QRectF bordes;
     QRect cuadrado;
     void setBundingRect();
+    int random();
     void validarSalio(float x, float y);
     void validarOpuesto();
     bool randonm();

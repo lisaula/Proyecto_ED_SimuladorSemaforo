@@ -25,6 +25,7 @@ public:
     int size();
     bool InFirst(Autos *c);
     void desplazar(Autos*);
+    void desplazarAnt(Autos* c);
     Cola2(const QString &Filename,QGraphicsItem *parent=nullptr);
     void logica();
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

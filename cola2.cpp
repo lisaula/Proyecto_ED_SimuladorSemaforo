@@ -18,8 +18,8 @@ void Cola2::logica()
                                //c->getPixmap());
         c->logica();
         temp = temp->sig;
-        if(frame%500==0)
-        popeo();
+//        if(frame%500==0)
+//          popeo();
     }
 //    if(frame%500==0)
 //        popeo();
@@ -45,16 +45,32 @@ Cola2::~Cola2()
 
 void Cola2::popeo()
 {
+//    if(poped){
+//        int n=size();
+//        if(n>0){
+//            NodoCarro* pri=root;
+//            pri->carro->setPosition(QPointF(cx,cy));
+//            n-=1;
+//            while(n){
+//                QPointF old = QPointF(pri->carro->position().x(),pri->carro->position().y());
+//                pri->sig->carro->setPosition(old);
+//                pri=pri->sig;
+//                n--;
+//            }
+//        }
+//    }
+//    poped=false;
     if(poped){
         int n=size();
         if(n>0){
             NodoCarro* pri=root;
+            QPointF old = QPointF(pri->carro->position().x(),pri->carro->position().y());
             pri->carro->setPosition(QPointF(cx,cy));
             n-=1;
             while(n){
-                QPointF old = QPointF(pri->carro->position().x(),pri->carro->position().y());
                 pri->sig->carro->setPosition(old);
                 pri=pri->sig;
+                old = QPointF(pri->carro->position().x(),pri->carro->position().y());
                 n--;
             }
         }
@@ -116,6 +132,7 @@ Autos* Cola2::pop(){
 
     NodoCarro* temp = root;
     root = root->sig;
+    desplazarAnt(temp->carro);
     temp->ant=NULL;
     temp->sig=NULL;
     Autos *t =temp->carro;
@@ -233,6 +250,40 @@ void Cola2::desplazar(Autos* c)
         while(si>0){
             Autos* c=getsegunpos(si);
             c->setPosition(QPointF(c->position().x(),c->position().y()-h));
+            si--;
+        }
+    }
+}
+
+void Cola2::desplazarAnt(Autos *c)
+{
+    float w= c->size().width()+5;
+    float h= c->size().height()+5;
+    int si = size();
+    if(nombre=="Creenshaw Ave"){
+
+        while(si>0){
+            Autos* c=getsegunpos(si);
+            c->setPosition(QPointF(c->position().x()+w,c->position().y()));
+            si--;
+        }
+    }else if(nombre == "Adams Ave"){
+        while(si>0){
+            Autos* c=getsegunpos(si);
+            cout<<c->tipo<<endl;
+            c->setPosition(QPointF(c->position().x()-w,c->position().y()));
+            si--;
+        }
+    }else if(nombre == "Main St"){
+        while(si>0){
+            Autos* c=getsegunpos(si);
+            c->setPosition(QPointF(c->position().x(),c->position().y()-h));
+            si--;
+        }
+    }else{
+        while(si>0){
+            Autos* c=getsegunpos(si);
+            c->setPosition(QPointF(c->position().x(),c->position().y()+h));
             si--;
         }
     }

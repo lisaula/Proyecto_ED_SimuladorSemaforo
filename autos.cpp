@@ -11,7 +11,7 @@ Autos::Autos(const QString &Filename, QGraphicsItem *parent): MyItem(Filename,pa
     pasar = false;
     salio=false;
     opuesto="";
-    //srand(time(NULL));
+    srand(time(NULL));
 }
 
 void Autos::setBundingRect()
@@ -20,22 +20,28 @@ void Autos::setBundingRect()
     cuadrado=QRect(bordes.x(),bordes.y(),bordes.width(),bordes.height());
 }
 
+int Autos::random()
+{
+    int x = 1+rand()%3;
+    return x;
+}
+
 void Autos::validarSalio(float x, float y)
 {
     if(calle=="Adams Ave"){
-        if(x<0){
+        if(x<250){
            salio = true;
         }
     }else if(calle =="Creenshaw Ave"){
-        if(x>1060){
+        if(x>813){
            salio = true;
         }
     }else if(calle=="Main St"){
-        if(y<0){
+        if(y<163){
            salio = true;
         }
     }else{
-        if(y>660){
+        if(y>493){
            salio = true;
         }
     }
@@ -93,6 +99,8 @@ void Autos::setTipo(string t){
         prioridad=false;
         x_vel=1.5*x_mul*direccionX;
         y_vel=1.5*y_mul*direccionY;
+        x_vel=x_vel/random();
+        y_vel=y_vel/random();
         setVelMax(QPointF(1.5,1.5));
         setVelocity(QPointF(x_vel,y_vel));
 
@@ -118,6 +126,8 @@ void Autos::setTipo(string t){
         prioridad=false;
         x_vel=4*x_mul*direccionX;
         y_vel=4*y_mul*direccionY;
+        x_vel=x_vel/random();
+        y_vel=y_vel/random();
         setVelMax(QPointF(4,4));
         setVelocity(QPointF(x_vel,y_vel));
     }else{
@@ -129,8 +139,6 @@ void Autos::setTipo(string t){
         setVelMax(QPointF(0.75,0.75));
         setVelocity(QPointF(x_vel,y_vel));
     }
-//    setVelMax(QPointF(0,0));
-//    setVelocity(QPointF(0,0));
 }
 
 void Autos::logica(){
@@ -138,21 +146,12 @@ void Autos::logica(){
     float y=this->position().y();
     float vx=this->velocity().x();
     float vy=this->velocity().y();
-//    if(tipo==":bus.png"){
-//        if(randonm()){
-//            pasar=true;
-//        }
-//    }
+
     if(pasar){
         x+= vx;
         y+=vy;
         validarSalio(x,y);
-//        if(x<0 || x>1060){
-//           salio = true;
-//        }
-//        if(y<0||y>660){
-//           salio = true;
-//        }
+
         this->setPosition(QPointF(x,y));
         this->setBundingRect();
     }

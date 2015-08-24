@@ -11,7 +11,7 @@ Interseccion::Interseccion(const QString &Filename,QGraphicsItem *parent): MyIte
     adams= new Calle("Rojo.png");
     adams->setearTipo("Adams Ave");
     frame=0;
-    srand(NULL);
+    srand(time(NULL));
     scn= NULL;
     carros_pasando=new ColaCarros(Filename);
     colision=false;
@@ -72,6 +72,8 @@ void Interseccion::logica()
         if(!pushed){
             string ctipo= colisiono->tipo;
             pila->push("bus en "+bus->calle+" colisiono con "+ctipo+" en "+colisiono->calle);
+            bus->setPosition(QPointF(500,300));
+            colisiono->setPosition(QPointF(500,300));
             pushed=true;
             if(ctipo == "camion.png"){
                 n=1500;
@@ -80,6 +82,8 @@ void Interseccion::logica()
         if(frame2%n==0){
             colision=false;
             carros_pasando->anular();
+//            carros_pasando->eliminar(colisiono);
+//            carros_pasando->eliminar(bus);
             pushed=false;
         }
     }
@@ -232,26 +236,38 @@ void Interseccion::ValidarBusSegunCalle()
 
 Autos *Interseccion::ValidarMasCerca(Autos *c)
 {
-    NodoCarro *temp = carros_pasando->root;
+    ColaCarros *lista=new ColaCarros(":Rojo.png");
     int n=carros_pasando->size();
+    NodoCarro *temp = carros_pasando->root;
+    while(n>0){
+        if(temp->carro->calle!=c->calle && temp->carro->tipo != c->opuesto){
+            lista->push(temp->carro);
+        }
+        temp=temp->sig;
+        n--;
+    }
+    NodoCarro *temp2 = lista->root;
+    int n2=lista->size();
     float posiciones[n];
     int cont=0;
-    while(cont<n){
-        Autos*carro = temp->carro;
-        if(carro->calle==c->calle || carro->calle==c->opuesto){
-            posiciones[cont]=-1;
-
-        }else{
+    while(cont<n2){
+        Autos*carro = temp2->carro;
         posiciones[cont]=getDistance(c,carro);
+//        if(carro->calle!=c->calle && carro->calle!=c->opuesto){
+//            posiciones[cont]=getDistance(c,carro);
+//            //posiciones[cont]=100000;
 
-        }
+//        }else{
+////        posiciones[cont]=getDistance(c,carro);
+//            posiciones[cont]=-1;
+//        }
         cont++;
-        temp=temp->sig;
+        temp2=temp2->sig;
         cout<<"Salio primer while"<<endl;
     }
     cont=0;
     int pos=0;
-    int menor=5000;
+    int menor=5000000;
     while(cont<n){
         if(posiciones[cont]>0){
             if(posiciones[cont]<menor){
@@ -263,7 +279,7 @@ Autos *Interseccion::ValidarMasCerca(Autos *c)
         cout<<"Salio segundo while"<<endl;
     }
 
-    Autos* cercano = carros_pasando->buscar(pos);
+    Autos* cercano = lista->buscar(pos);
     return cercano;
 
 }

@@ -13,6 +13,7 @@ public:
     Calle *main,*maple,*creenshow,*adams;
     Pila* pila;
     void cruzar();
+    bool pushed;
     Interseccion(const QString &Filename,QGraphicsItem *parent=nullptr);
     MyScene* getScene();
     void logica();
@@ -25,12 +26,15 @@ public:
     void ValidarBusSegunCalle();
     Autos* ValidarMasCerca(Autos*c);
     int getDistance(Autos*,Autos*);
+    void semaforosOFF();
+   ~Interseccion();
 private:
-    int frame;
+    int frame,frame2,n;
     MyScene *scn;
 //    ColaCarros* carros_pasando;
     bool colision;
     Autos* colisiono;
+    Autos* bus;
 
 };
 

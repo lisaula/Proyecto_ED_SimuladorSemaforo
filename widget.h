@@ -24,6 +24,7 @@ class Widget : public QWidget
 
 public:
     void insertarActores();
+    Interseccion* getInterseccion();
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 signals:

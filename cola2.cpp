@@ -18,6 +18,8 @@ void Cola2::logica()
                                //c->getPixmap());
         c->logica();
         temp = temp->sig;
+        if(frame%500==0)
+        popeo();
     }
 //    if(frame%500==0)
 //        popeo();
@@ -33,6 +35,12 @@ void Cola2::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         c->paint(painter, option, widget);
         temp = temp->sig;
     }
+}
+
+Cola2::~Cola2()
+{
+    delete root;
+    delete end;
 }
 
 void Cola2::popeo()

@@ -22,6 +22,7 @@ public:
     int size();
     Autos* buscar(int);
     ColaCarros(const QString &Filename,QGraphicsItem *parent=nullptr);
+    ~ColaCarros();
 };
 
 #endif // COLACARROS_H

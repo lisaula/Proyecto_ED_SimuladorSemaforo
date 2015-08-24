@@ -33,6 +33,7 @@ public:
     void activarSemaforo(int tiempo);
     void validarSema();
     void validarSema2();
+    ~Calle();
 private:
     float cx=0,cy=0;
 

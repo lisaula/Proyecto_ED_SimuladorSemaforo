@@ -29,6 +29,7 @@ public:
     void logica();
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget =0);
+    ~Cola2();
 private:
     int cx,cy, frame;
 };

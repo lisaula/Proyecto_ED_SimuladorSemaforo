@@ -63,6 +63,12 @@ void Calle::validarSema2()
     }
 }
 
+Calle::~Calle()
+{
+    delete cola1;
+    delete cola2;
+}
+
 void Calle::agregarCarro()
 {
 //    Autos * c =

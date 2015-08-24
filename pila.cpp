@@ -49,11 +49,11 @@ QString Pila::imprimir(){
         QString tex="";
         NodoP* temp= tope;
         while(temp){
-            tex+=QString("%1 ->").arg(temp->dato.c_str());
+            tex+=QString("%1").arg(temp->dato.c_str());
+            tex+="\n";
             temp=temp->next;
         }
-        tex+="NULL";
-        tex+="\n";
+
         return tex;
     }
     return "";

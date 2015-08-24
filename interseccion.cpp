@@ -16,41 +16,71 @@ Interseccion::Interseccion(const QString &Filename,QGraphicsItem *parent): MyIte
     carros_pasando=new ColaCarros(Filename);
     colision=false;
     pila= new Pila();
+    bus=NULL;
+    pushed=false;
+    frame2=1;
+    n =800;
 }
 void Interseccion::logica()
 {
     frame++;
+    if(frame%750==0){
+        main->agregarCarro();
+        main->agregarCarro2();
+    }else if(frame%800==0){
+        maple->agregarCarro();
+        maple->agregarCarro2();
+    }
+
+    if(frame%1000==0){
+        creenshow->agregarCarro();
+        creenshow->agregarCarro2();
+    }else if(frame%1500==0){
+        adams->agregarCarro();
+        adams->agregarCarro2();
+    }
+
     if(!colision){
         main->logica();
         maple->logica();
         creenshow->logica();
         adams->logica();
         carros_pasando->logica();
-        if(frame%750==0){
-            main->agregarCarro();
-            main->agregarCarro2();
-        }else if(frame%800==0){
-            maple->agregarCarro();
-            maple->agregarCarro2();
-        }
+//        if(frame%750==0){
+//            main->agregarCarro();
+//            main->agregarCarro2();
+//        }else if(frame%800==0){
+//            maple->agregarCarro();
+//            maple->agregarCarro2();
+//        }
 
-        if(frame%1000==0){
-            creenshow->agregarCarro();
-            creenshow->agregarCarro2();
-        }else if(frame%1500==0){
-            adams->agregarCarro();
-            adams->agregarCarro2();
-        }
+//        if(frame%1000==0){
+//            creenshow->agregarCarro();
+//            creenshow->agregarCarro2();
+//        }else if(frame%1500==0){
+//            adams->agregarCarro();
+//            adams->agregarCarro2();
+//        }
         validarSemaforos();
         liberarAutos();
         ValidarBusSegunCalle();
         carros_pasando->verificarSalio();
     }else{
+        frame2++;
+        semaforosOFF();
 
-        pila->push("bus.png colisiono con "+colisiono->tipo);
-        if(frame%800==0){
+        if(!pushed){
+            string ctipo= colisiono->tipo;
+            pila->push("bus en "+bus->calle+" colisiono con "+ctipo+" en "+colisiono->calle);
+            pushed=true;
+            if(ctipo == "camion.png"){
+                n=1500;
+            }
+        }
+        if(frame2%n==0){
             colision=false;
             carros_pasando->anular();
+            pushed=false;
         }
     }
 
@@ -165,6 +195,7 @@ void Interseccion::validarBus(Calle *calle)
                 carros_pasando->push(t);
                 colision=true;
                 colisiono= ValidarMasCerca(t);
+                bus=t;
             }
         }
     }
@@ -177,6 +208,7 @@ void Interseccion::validarBus(Calle *calle)
                 carros_pasando->push(t);
                 colision=true;
                 colisiono= ValidarMasCerca(t);
+                bus=t;
             }
         }
     }
@@ -261,5 +293,21 @@ int Interseccion::getDistance(Autos *a, Autos *b)
         cont++;
     }
     return cont;
+}
+
+void Interseccion::semaforosOFF()
+{
+    main->sema->activar(0);
+    maple->sema->activar(0);
+    creenshow->sema->activar(0);
+    adams->sema->activar(0);
+}
+
+Interseccion::~Interseccion()
+{
+    delete main;
+    delete maple;
+    delete creenshow;
+    delete adams;
 }
 

@@ -7,6 +7,12 @@ ColaCarros::ColaCarros(const QString &Filename,QGraphicsItem *parent):MyItem(Fil
     vacio = 0;
 }
 
+ColaCarros::~ColaCarros()
+{
+    delete root;
+    delete end;
+}
+
 void ColaCarros::push(Autos *c){
 
     if(!root){

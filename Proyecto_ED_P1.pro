@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     cola.cpp \
     cola2.cpp \
     nodop.cpp \
-    pila.cpp
+    pila.cpp \
+    menu.cpp \
+    log.cpp
 
 HEADERS  += widget.h \
     myitem.h \
@@ -46,9 +48,13 @@ HEADERS  += widget.h \
     cola.h \
     cola2.h \
     nodop.h \
-    pila.h
+    pila.h \
+    menu.h \
+    log.h
 
-FORMS    += widget.ui
+FORMS    += widget.ui \
+    menu.ui \
+    log.ui
 
 QMAKE_CXXFLAGS += -std=gnu++11
 

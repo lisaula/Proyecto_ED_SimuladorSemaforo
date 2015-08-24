@@ -9,6 +9,8 @@
 #include "autos.h"
 #include "colacarros.h"
 #include "calle.h"
+#include "cola.h"
+#include "interseccion.h"
 using namespace std;
 namespace Ui {
 class Widget;
@@ -34,6 +36,7 @@ private:
     MyThread *thread;
     QImage image;
     SemaforoH * semaH;
+    Interseccion *inter;
 };
 
 #endif // WIDGET_H

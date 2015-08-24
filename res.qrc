@@ -16,5 +16,8 @@
         <file>camionV.png</file>
         <file>PoliciaV.png</file>
         <file>turismoV.png</file>
+        <file>NaranjaV.png</file>
+        <file>RojoV.png</file>
+        <file>verdeV.png</file>
     </qresource>
 </RCC>

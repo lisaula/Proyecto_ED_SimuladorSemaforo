@@ -26,7 +26,7 @@ public:
     void flip(bool horizontal, bool vertical);
     void rotate(int r);
 
-protected:
+//protected:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget =0);

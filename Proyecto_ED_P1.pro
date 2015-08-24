@@ -24,7 +24,11 @@ SOURCES += main.cpp\
     colacarros.cpp \
     nodocarro.cpp \
     calle.cpp \
-    interseccion.cpp
+    interseccion.cpp \
+    cola.cpp \
+    cola2.cpp \
+    nodop.cpp \
+    pila.cpp
 
 HEADERS  += widget.h \
     myitem.h \
@@ -38,7 +42,11 @@ HEADERS  += widget.h \
     colacarros.h \
     nodocarro.h \
     calle.h \
-    interseccion.h
+    interseccion.h \
+    cola.h \
+    cola2.h \
+    nodop.h \
+    pila.h
 
 FORMS    += widget.ui
 

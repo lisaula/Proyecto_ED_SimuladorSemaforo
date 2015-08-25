@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "ui_menu.h"
+#include <QMessageBox>
 
 Menu::Menu(QWidget *parent) :
     QWidget(parent),
@@ -7,6 +8,7 @@ Menu::Menu(QWidget *parent) :
 {
     ui->setupUi(this);
     inter=NULL;
+    ui->Logo->setPixmap(QPixmap(":Logo.png"));
 }
 
 Menu::~Menu()
@@ -25,10 +27,13 @@ void Menu::on_Simular_clicked()
 
 void Menu::on_Historial_clicked()
 {
-    Log *l = new Log();
-    l->setInterseccion(inter);
-    l->setVisible(true);
-
+    if(inter){
+        Log *l = new Log();
+        l->setInterseccion(inter);
+        l->setVisible(true);
+    }else{
+        QMessageBox::warning(this, "Error", "No ha habido simulacion");
+    }
 }
 
 void Menu::on_Exit_clicked()
